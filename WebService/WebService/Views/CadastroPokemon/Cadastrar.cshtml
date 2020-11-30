@@ -1,0 +1,47 @@
+﻿
+@model Player
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h1>Cadastrar</h1>
+
+<form asp-action="Cadastrar" asp-controller="CadastroPokemon" method="post">
+    <fieldset>
+        <legend> Cadastro de Pokémon favorito </legend>
+        @*<div class="form-group">
+            <label>Pesquisar Pokémon</label>
+            <input class="form-group" type="text" id="pesquisaPokemon" />
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-info" onclick="BuscarPokemon()"> Buscar </button>
+        </div>*@
+        <div>
+            <div class="form-group">
+                <label>Nome</label>
+                <input class="form-group" type="text" id="nome" asp-for="Nome" />
+            </div>
+            <div>
+                <label>Email</label>
+                <input class="form-group" type="text" id="email" asp-for="Email" />
+            </div>
+            <div>
+                <label>Idade</label>
+                <input class="form-group" type="text" id="idade" asp-for="Idade" />
+            </div>
+            <div>
+                <label>nomePokemon</label>
+                <input class="form-group" type="text" id="nomePokemonPreferido" asp-for="NomePokemonPreferido"  readonly />
+            </div>
+            <div>
+                <label>Numero na Pokedex</label>
+                <input class="form-group" type="text" id="numeroPokemonPreferido" asp-for="NumeroPokemon" readonly />
+            </div>
+            <div>
+                <label>Imagem </label>
+                <input class="form-group" type="text" id="urlImgPokemonPreferido" asp-for="UrlFotoPokemon" readonly />
+            </div>
+        </div>
+        <input class="btn btn-success" type="submit" value="Cadastrar" />
+    </fieldset>
+</form>

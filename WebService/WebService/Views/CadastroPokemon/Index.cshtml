@@ -1,0 +1,132 @@
+﻿@model Player;
+@{
+    ViewData["Title"] = "Cadastro Pokemon Favorito";
+
+    var viewBagList = ViewBag.ListPlayers;
+}
+
+<h1>Cadastro Pokemon Favorito</h1>
+
+
+<fieldset>
+    <legend> Pesquisar seu Pokémon favorito </legend>
+    <div class="form-group">
+        <label>Buscar Pokémon</label>
+        <input class="form-group" type="text" id="buscarPokemon" />
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-info" onclick="BuscarPokemon()"> Buscar </button>
+    </div>
+</fieldset>
+<form asp-action="PokemonCadastro" asp-controller="CadastroPokemon" method="post">
+    <fieldset>
+        <legend> Cadastrar seu Pokémon favorito </legend>
+        <div>
+            <label>Nome do Pokémon</label>
+            <input class="form-group" type="text" id="nomePokemonPreferido" readonly asp-for="NomePokemonPreferido" />
+        </div>
+        <div>
+            <label>Numero na Pokedex</label>
+            <input class="form-group" type="text" id="numeroPokemonPreferido" readonly  asp-for="NumeroPokemon" />
+        </div>
+        <div>
+            <label>Link da Imagem do Pokémon </label>
+            <input class="form-group" type="text" id="urlImgPokemonPreferido" readonly  asp-for="UrlFotoPokemon" />
+        </div>
+        <div class="form-group">
+            @* <button type="button" class="btn btn-info" asp-action=""> Cadastrar </button>*@
+            <input class="btn btn-success" type="submit" value="Cadastrar" id="pesquisarCadastrar" />
+        </div>
+    </fieldset>
+</form>
+
+<fieldset>
+    <legend> Listagem de Players e seu Pokémon favorito </legend>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Idade</th>
+                <th scope="col">Pokémon Favorito</th>
+                <th scope="col">Numero na Pokedex</th>
+                <th scope="col">Imagem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Player player in viewBagList)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@player.Nome</td>
+                    <td>@player.Email</td>
+                    <td>@player.Idade</td>
+                    <td>@player.NomePokemonPreferido</td>
+                    <td>@player.NumeroPokemon</td>
+                    <td><img src="@player.UrlFotoPokemon" alt="@player.NomePokemonPreferido" width=60 height=60></td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</fieldset>
+
+
+
+
+    <script type="text/javascript">
+            var nomePokemon;
+            var numeroPokemon;
+            var urlImgPokemon;
+
+            let txtPesquisaPokemon = document.getElementById("buscarPokemon");
+
+            let txtNomePokemonPreferido = document.getElementById("nomePokemonPreferido");
+            let txtNumeroPokemonPreferido = document.getElementById("numeroPokemonPreferido");
+            let txtUrlImgPokemonPreferido = document.getElementById("urlImgPokemonPreferido");
+
+
+        function BuscarPokemon() {
+
+            let pokemon = txtPesquisaPokemon.value;
+
+            let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
+            fetch(url)
+                .then(
+                    function (response) {
+                        response.json()
+                            .then(function (data) {
+                                //console.log(data)
+                                //console.log(data.name)
+                                //console.log(data.id)
+                                //console.log(data.sprites.front_default)
+                                txtNomePokemonPreferido.value = data.name;
+                                txtNumeroPokemonPreferido.value = data.id;
+                                txtUrlImgPokemonPreferido.value = data.sprites.front_default;
+                                nomePokemon = data.name;
+                                numeroPokemon = data.id;
+                                urlImgPokemon = data.sprites.front_default;
+                                console.log(nomePokemon)
+                                console.log(numeroPokemon)
+                                console.log(urlImgPokemon)
+                                console.log(txtNomePokemonPreferido.value)
+
+                            })
+                    })
+                .catch(error => console.log(error));
+
+            
+
+
+        }
+        
+    </script>
+
+
+
+
+
+

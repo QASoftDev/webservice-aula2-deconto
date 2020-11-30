@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebService.Models;
 
 namespace WebService
 {
@@ -22,6 +24,9 @@ namespace WebService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<Context>
+                (options => options.UseSqlServer(
+                    Configuration.GetConnectionString("Connection")));
             services.AddControllersWithViews();
         }
 
@@ -46,7 +51,7 @@ namespace WebService
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=CadastroPokemon}/{action=Index}/{id?}");
             });
         }
     }
