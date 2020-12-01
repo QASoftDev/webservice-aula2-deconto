@@ -1,0 +1,129 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>About</title>
+</head>
+
+<body>
+    <div class="nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="@Url.Action("Index", "CadastroPokemon")">Página inicial</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sobre</a>
+            </li>
+        </ul>
+    </div>
+
+    <h3>Membros da equipe</h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Matricula</th>
+                <th scope="col">Função</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Rodrigo Acevedo</td>
+                <td>1838618</td>
+                <td>Dev Backend</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Elizeu Moreira</td>
+                <td>123</td>
+                <td>Designer e Dev FrontEnd</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Rinaldo Vieira</td>
+                <td>123</td>
+                <td>Dev Frontend e Tester</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <h2>Manual das Rotas</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Tipo</th>
+                <th scope="col">Rota</th>
+                <th scope="col">URL</th>
+                <th scope="col">Body</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Post</td>
+                <td>Cadastrar</td>
+                <td>POST http://localhost:62449/api/CadastroPokemonApi/Cadastrar</td>
+                <td>
+                    Content-Type: application/json <br />
+
+                    {<br />
+                    "nome" : "paulo marreta",<br />
+                    "email" : "marretao@pedreiro.com",<br />
+                    "idade" : 65,<br />
+                    "nomepokemonpreferido" : "larvitar",<br />
+                    "numeropokemon" : 666,<br />
+                    "urlfotopokemon" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png"<br />
+                    }
+                </td>
+            </tr>
+            <tr>
+                <
+                <td>PUT</td>
+                <td>Editar</td>
+                <td>PUT http://localhost:62449/api/CadastroPokemonApi/editar/id</td>
+                <td>
+                    Content-Type: application/json <br />
+
+                    {<br />
+                    "nome" : "Novo Nome",<br />
+                    "email" : "email",<br />
+                    "idade" : 65,<br />
+                    "nomepokemonpreferido" : "nome pokemon",<br />
+                    "numeropokemon" : 123,<br />
+                    "urlfotopokemon" : "url da imagem do pokemon"<br />
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>Listar</td>
+                <td>GET http://localhost:62449/api/CadastroPokemonApi/Listar</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>Localizar por Nome</td>
+                <td>GET http://localhost:62449/api/CadastroPokemonApi/LocalizarPorNome/nomeplayer</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>Deletar</td>
+                <td>GET http://localhost:62449/api/CadastroPokemonApi/Deletar/id</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>

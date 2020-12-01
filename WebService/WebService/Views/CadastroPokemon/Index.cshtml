@@ -5,6 +5,21 @@
     var viewBagList = ViewBag.ListPlayers;
 }
 
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<div class="nav">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Página inicial</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("About", "CadastroPokemon")">Sobre</a>
+        </li>
+    </ul>
+</div>
+
 <h1>Cadastro Pokemon Favorito</h1>
 
 
@@ -35,6 +50,7 @@
         </div>
         <div class="form-group">
             @* <button type="button" class="btn btn-info" asp-action=""> Cadastrar </button>*@
+
             <input class="btn btn-success" type="submit" value="Cadastrar" id="pesquisarCadastrar" />
         </div>
     </fieldset>
@@ -58,13 +74,13 @@
             @foreach (Player player in viewBagList)
             {
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">@player.Id</th>
                     <td>@player.Nome</td>
                     <td>@player.Email</td>
                     <td>@player.Idade</td>
                     <td>@player.NomePokemonPreferido</td>
                     <td>@player.NumeroPokemon</td>
-                    <td><img src="@player.UrlFotoPokemon" alt="@player.NomePokemonPreferido" width=60 height=60></td>
+                    <td><img src="@player.UrlFotoPokemon" alt="@player.NomePokemonPreferido" width=90 height=90></td>
 
 
                 </tr>

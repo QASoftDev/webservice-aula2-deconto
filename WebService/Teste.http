@@ -1,0 +1,22 @@
+###
+GET https://pokeapi.co/api/v2/pokemon/pikachu
+
+###
+GET http://viacep.com.br/ws/123541d8/json/
+
+###
+GET http://localhost:62429/api/Endereco/Listar
+
+###
+GET http://localhost:62429/api/Endereco/Buscar/3
+
+###
+POST http://localhost:62429/api/Endereco/Cadastrar
+Content-Type: application/json
+
+{
+    "id" : 4,
+    "cep" : "82940050",
+    "logradouro" : "Rua José Fabiano Barcik",
+    "localidade" : "Curitiba"
+}

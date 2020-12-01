@@ -3,21 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebService.DAL;
 using WebService.Models;
 
 namespace WebService.Controllers
 {
     public class CadastroPokemonController : Controller
     {
-        private readonly Context _context;
-        public CadastroPokemonController(Context context)
+        private readonly CadastroPokemonDAL _cadastroPokemonDAO;
+        public CadastroPokemonController(CadastroPokemonDAL cadastroPokemonDAO)
         {
-            _context = context;
+            _cadastroPokemonDAO = cadastroPokemonDAO;
         }
 
         public IActionResult Index()
         {
-           ViewBag.ListPlayers = _context.Players.ToList();
+           ViewBag.ListPlayers = _cadastroPokemonDAO.Listar();
             return View();
         }
 
@@ -35,9 +36,20 @@ namespace WebService.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Player player)
         {
-            _context.Players.Add(player);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            if (!_cadastroPokemonDAO.Cadastrar(player))
+            {
+                ModelState.AddModelError("", "Esse player já esta cadastrado!");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        public IActionResult About()
+        {
+            return View("About"); 
         }
 
 
