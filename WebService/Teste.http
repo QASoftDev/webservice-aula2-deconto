@@ -20,3 +20,42 @@ Content-Type: application/json
     "logradouro" : "Rua José Fabiano Barcik",
     "localidade" : "Curitiba"
 }
+
+
+
+###
+GET http://localhost:62449/api/CadastroPokemonApi/Listar
+
+###
+GET http://localhost:62449/api/CadastroPokemonApi/LocalizarPorNome/Carol
+
+###
+GET http://localhost:62449/api/CadastroPokemonApi/Deletar/2016
+
+###
+POST http://localhost:62449/api/CadastroPokemonApi/Cadastrar
+Content-Type: application/json
+
+{
+    "nome" : "paulo marreta",
+    "email" : "marretao@pedreiro.com",
+    "idade" : 65,
+    "nomepokemonpreferido" : "larvitar",
+    "numeropokemon" : 666,
+    "urlfotopokemon" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png"
+}
+
+###
+PUT http://localhost:62449/api/CadastroPokemonApi/editar/2014
+Content-Type: application/json
+
+{
+    "nome" : "Carllos Vendetta",
+    "email" : "Vendeta@vinganca.com.br",
+    "idade" : 17,
+    "nomepokemonpreferido" : "larvitar",
+    "numeropokemon" : 246,
+    "urlfotopokemon" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png"
+}
+
+
