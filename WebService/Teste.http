@@ -30,7 +30,7 @@ GET http://localhost:62449/api/CadastroPokemonApi/Listar
 GET http://localhost:62449/api/CadastroPokemonApi/LocalizarPorNome/Carol
 
 ###
-GET http://localhost:62449/api/CadastroPokemonApi/Deletar/2016
+DELETE  http://localhost:62449/api/CadastroPokemonApi/Deletar/2016
 
 ###
 POST http://localhost:62449/api/CadastroPokemonApi/Cadastrar
