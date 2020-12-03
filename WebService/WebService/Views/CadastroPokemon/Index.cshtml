@@ -164,10 +164,10 @@
     let txtNumeroPokemonPreferido = document.getElementById("numeroPokemonPreferido");
     let txtUrlImgPokemonPreferido = document.getElementById("urlImgPokemonPreferido");
 
-    function alerta(type, title, mensagem) {
+    function alerta( title, mensagem) {
         Swal.fire({
-            title: 'Falha ao localizar Pokémon!',
-            text: 'Escolha outro pokémon ou digite o nome corretamente!',
+            title: title,
+            text: mensagem,
             imageUrl: './img/what.png',
             imageWidth: 100,
             imageHeight: 100,
@@ -181,6 +181,13 @@
 
     function BuscarPokemon() {
 
+        if (txtPesquisaPokemon.value == "")
+        {
+            alerta("Campo não foi preenchidoI", "Digite o nome corretamente ou número Pokédex do pokémon desejado!");
+        }
+        else
+        {
+
         let pokemon = txtPesquisaPokemon.value;
 
         let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
@@ -189,29 +196,30 @@
                 function (response) {
                     if (response.status === 404) {
                         //alert("Escolha outro pokemon ou digite o nome corretamente!");
-                        alerta("Falha ao localizar Pokemon", "Escolha outro pokemon ou digite o nome corretamente!");
+                        alerta("Falha ao localizar Pokémon", "Escolha outro pokémon ou digite o nome ou numero Pokédex corretamente!");
                     }
-                    else
-                    {
+                    else {
                         response.json()
                             .then(function (data) {
-                                    txtNomePokemonPreferido.value = data.name;
-                                    txtNumeroPokemonPreferido.value = data.id;
-                                    txtUrlImgPokemonPreferido.value = data.sprites.front_default;
-                                    nomePokemon = data.name;
-                                    numeroPokemon = data.id;
-                                    urlImgPokemon = data.sprites.front_default;
-                                    document.getElementById('qr_img').src = urlImgPokemon;
-                                    console.log(nomePokemon)
-                                    console.log(numeroPokemon)
-                                    console.log(urlImgPokemon)
-                                    console.log(txtNomePokemonPreferido.value)
+                                txtNomePokemonPreferido.value = data.name;
+                                txtNumeroPokemonPreferido.value = data.id;
+                                txtUrlImgPokemonPreferido.value = data.sprites.front_default;
+                                nomePokemon = data.name;
+                                numeroPokemon = data.id;
+                                urlImgPokemon = data.sprites.front_default;
+                                document.getElementById('qr_img').src = urlImgPokemon;
+                                console.log(nomePokemon)
+                                console.log(numeroPokemon)
+                                console.log(urlImgPokemon)
+                                console.log(txtNomePokemonPreferido.value)
                             })
-                        }
-                    })
-                       
-                .catch(error => console.log(error));
+                    }
+                })
+
+            .catch(error => console.log(error));
+        }
     }
+
 
 
 </script>
