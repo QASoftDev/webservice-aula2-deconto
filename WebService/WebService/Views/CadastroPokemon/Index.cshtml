@@ -166,8 +166,8 @@
 
     function alerta(type, title, mensagem) {
         Swal.fire({
-            title: 'Falha ao localizar Pokemon!',
-            text: 'Escolha outro pokemon ou digite o nome corretamente!',
+            title: 'Falha ao localizar Pokémon!',
+            text: 'Escolha outro pokémon ou digite o nome corretamente!',
             imageUrl: './img/what.png',
             imageWidth: 100,
             imageHeight: 100,
@@ -195,11 +195,6 @@
                     {
                         response.json()
                             .then(function (data) {
-                            
-                                     //console.log(data)
-                                    //console.log(data.name)
-                                    //console.log(data.id)
-                                    //console.log(data.sprites.front_default)
                                     txtNomePokemonPreferido.value = data.name;
                                     txtNumeroPokemonPreferido.value = data.id;
                                     txtUrlImgPokemonPreferido.value = data.sprites.front_default;
@@ -211,24 +206,6 @@
                                     console.log(numeroPokemon)
                                     console.log(urlImgPokemon)
                                     console.log(txtNomePokemonPreferido.value)
-
-                                
-                                ////console.log(data)
-                                ////console.log(data.name)
-                                ////console.log(data.id)
-                                ////console.log(data.sprites.front_default)
-                                //txtNomePokemonPreferido.value = data.name;
-                                //txtNumeroPokemonPreferido.value = data.id;
-                                //txtUrlImgPokemonPreferido.value = data.sprites.front_default;
-                                //nomePokemon = data.name;
-                                //numeroPokemon = data.id;
-                                //urlImgPokemon = data.sprites.front_default;
-                                //document.getElementById('qr_img').src = urlImgPokemon;
-                                //console.log(nomePokemon)
-                                //console.log(numeroPokemon)
-                                //console.log(urlImgPokemon)
-                                //console.log(txtNomePokemonPreferido.value)
-
                             })
                         }
                     })
