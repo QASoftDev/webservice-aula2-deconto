@@ -1,129 +1,302 @@
-﻿
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>About</title>
-</head>
-
-<body>
-    <div class="nav">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="@Url.Action("Index", "CadastroPokemon")">Página inicial</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Sobre</a>
-            </li>
-        </ul>
-    </div>
-
-    <h3>Membros da equipe</h3>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Matricula</th>
-                <th scope="col">Função</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Rodrigo Acevedo</td>
-                <td>1838618</td>
-                <td>Dev Backend</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Elizeu Moreira</td>
-                <td>123</td>
-                <td>Designer e Dev FrontEnd</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Rinaldo Vieira</td>
-                <td>1838049</td>
-                <td>Dev Frontend e Tester</td>
-            </tr>
-        </tbody>
-    </table>
-
-
-
-
-    <h2>Manual das Rotas</h2>
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Tipo</th>
-                <th scope="col">Rota</th>
-                <th scope="col">URL</th>
-                <th scope="col">Body</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Post</td>
-                <td>Cadastrar</td>
-                <td>POST http://localhost:62449/api/CadastroPokemonApi/Cadastrar</td>
-                <td>
-                    Content-Type: application/json <br />
-
-                    {<br />
-                    "nome" : "paulo marreta",<br />
-                    "email" : "marretao@pedreiro.com",<br />
-                    "idade" : 65,<br />
-                    "nomepokemonpreferido" : "larvitar",<br />
-                    "numeropokemon" : 666,<br />
-                    "urlfotopokemon" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png"<br />
-                    }
-                </td>
-            </tr>
-            <tr>
-                <
-                <td>PUT</td>
-                <td>Editar</td>
-                <td>PUT http://localhost:62449/api/CadastroPokemonApi/editar/id</td>
-                <td>
-                    Content-Type: application/json <br />
-
-                    {<br />
-                    "nome" : "Novo Nome",<br />
-                    "email" : "email",<br />
-                    "idade" : 65,<br />
-                    "nomepokemonpreferido" : "nome pokemon",<br />
-                    "numeropokemon" : 123,<br />
-                    "urlfotopokemon" : "url da imagem do pokemon"<br />
-                    }
-                </td>
-            </tr>
-            <tr>
-                <td>GET</td>
-                <td>Listar</td>
-                <td>GET http://localhost:62449/api/CadastroPokemonApi/Listar</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>GET</td>
-                <td>Localizar por Nome</td>
-                <td>GET http://localhost:62449/api/CadastroPokemonApi/LocalizarPorNome/nomeplayer</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>GET</td>
-                <td>Deletar</td>
-                <td>GET http://localhost:62449/api/CadastroPokemonApi/Deletar/id</td>
-                <td>-</td>
-            </tr>
-        </tbody>
-    </table>
-
-
-</body>
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <title>PokéFan | Documentação</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link href="/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icones Css -->
+        <link href="/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="/css/app.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body data-layout="horizontal" data-topbar="dark">
+        <div class="container-fluid">
+            <div id="layout-wrapper">
+                <!--cabeçalho-->
+                <header id="page-topbar">
+                    <nav class="navbar navbar-expand-md navbar-fixed-top main-nav navbar-header">
+                        <div class="container">
+                            <div class="navbar-collapse collapse nav-content order-2"></div>
+                            <ul class="nav navbar-nav text-nowrap flex-row mx-md-auto order-1 order-md-2">
+                                <li class="nav-item"><a href="@Url.Action("Index", "CadastroPokemon")"><img src="/img/logo.png" alt="PokéFan" height="60"></a></li>
+                            </ul>
+                            <div class="ml-auto navbar-collapse collapse nav-content order-3 order-md-3"></div>
+                        </div>
+                    </nav>
+                </header>
+                <div class="main-content">
+                    <div class="page-content">
+                        <!-- título da pagina Equipe -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h3 class="page-title mb-0 font-size-18">Equipe de Desenvolvimento</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--CARD DO ELIZEU-->
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="profile-widgets py-3">
+                                            <div class="text-center">
+                                                <div class="">
+                                                    <img src="/img/avatar-elizeu.png" alt="Elizeu Stachuka Moreira" class="avatar-lg mx-auto img-thumbnail rounded-circle">
+                                                </div>
+                                                <div class="mt-3 ">
+                                                    <a href="#" class="text-dark font-weight-medium font-size-16">Elizeu Moreira</a>
+                                                    <p class="text-body mt-1 mb-1">Matricula: 1837086</p>
+                                                    <span class="badge badge-info">Front-End</span>
+                                                    <span class="badge badge-info">UX/UI Designer</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--FIM DO CARD DO ELIZEU-->
+                            <!--CARD DO RINALDO-->
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="profile-widgets py-3">
+                                            <div class="text-center">
+                                                <div class="">
+                                                    <img src="/img/avatar-rinaldo.png" alt="Rinaldo Roger Vieira" class="avatar-lg mx-auto img-thumbnail rounded-circle">
+                                                </div>
+                                                <div class="mt-3 ">
+                                                    <a href="#" class="text-dark font-weight-medium font-size-16">Rinaldo Vieira</a>
+                                                    <p class="text-body mt-1 mb-1">Matricula: 1837086</p>
+                                                    <span class="badge badge-info">Tester</span>
+                                                    <span class="badge badge-info">Front-End</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--FIM DO CARD DO RINALDO-->
+                            <!--CARD DO RODRIGO-->
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="profile-widgets py-3">
+                                            <div class="text-center">
+                                                <div class="">
+                                                    <img src="/img/avatar-rodrigo.png" alt="Rodrigo Acevedo" class="avatar-lg mx-auto img-thumbnail rounded-circle">
+                                                </div>
+                                                <div class="mt-3 ">
+                                                    <a href="#" class="text-dark font-weight-medium font-size-16">Rodrigo Acevedo</a>
+                                                    <p class="text-body mt-1 mb-1">Matricula: 1838608﻿﻿﻿</p>
+                                                    <span class="badge badge-info">Back-End</span>
+                                                    <span class="badge badge-info">Tester</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--FIM DO CARD DO RODRIGO-->
+                        </div>
+                            <!-- título da pagina Documentação -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                                        <h3 class="page-title mb-0 font-size-18">Documentação</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Card Cadastro-->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Cadastrar um Pokémon e Jogador</h4>
+                                        <p class="card-title-desc">
+                                            Use esta requisição para <b>Cadastrar</b> um Pokémon e Jogador no PokeFan.
+                                        </p>
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tipo</th>
+                                                        <th>URL</th>
+                                                        <th>Body</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td scope="row"><code>POST</code></td>
+                                                        <td><code>http://localhost:62449/api/CadastroPokemonApi/Cadastrar</code></td>
+                                                        <td>
+                                                            <code>
+                                                                Content-Type: application/json <br />
+                                                                {<br />
+                                                                "nome" : "paulo marreta",<br />
+                                                                "email" : "marretao@pedreiro.com",<br />
+                                                                "idade" : 65,<br />
+                                                                "nomepokemonpreferido" : "larvitar",<br />
+                                                                "numeropokemon" : 666,<br />
+                                                                "urlfotopokemon" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png"<br />
+                                                                }
+                                                            </code>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Card EDITAR-->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Editar um Pokémon e Jogador</h4>
+                                        <p class="card-title-desc">
+                                            Use esta requisição para <b>Editar</b> um Pokémon e Jogador no PokeFan, passando um <code>id</code>.
+                                        </p>
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tipo</th>
+                                                        <th>URL</th>
+                                                        <th>Body</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td scope="row"><code>PUT</code></td>
+                                                        <td><code>http://localhost:62449/api/CadastroPokemonApi/editar/id</code></td>
+                                                        <td>
+                                                            <code>
+                                                                Content-Type: application/json <br />
+                                                                {<br />
+                                                                "nome" : "Novo Nome",<br />
+                                                                "email" : "email",<br />
+                                                                "idade" : 65,<br />
+                                                                "nomepokemonpreferido" : "nome pokemon",<br />
+                                                                "numeropokemon" : 123,<br />
+                                                                "urlfotopokemon" : "url da imagem do pokemon"<br />
+                                                                }
+                                                            </code>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Card LISTAR-->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Listar todos Pokémons e Jogadores Cadastrados</h4>
+                                        <p class="card-title-desc">
+                                            Use esta requisição para <b>Listar</b> todos os Pokémons e Jogadores cadastrados no PokéFan.
+                                        </p>
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tipo</th>
+                                                        <th>URL</th>
+                                                        <th>Body</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td scope="row"><code>GET</code></td>
+                                                        <td><code>http://localhost:62449/api/CadastroPokemonApi/Listar</code></td>
+                                                        <td>-</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Localizar por NOME-->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Localizar pelo Nome do Jogador</h4>
+                                        <p class="card-title-desc">
+                                            Use esta requisição para <b>Localizar</b> por nome do Jogador o Pokémon que a ele pertence.
+                                        </p>
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tipo</th>
+                                                        <th>URL</th>
+                                                        <th>Body</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td scope="row"><code>GET</code></td>
+                                                        <td><code>http://localhost:62449/api/CadastroPokemonApi/LocalizarPorNome/nomeplayer</code></td>
+                                                        <td>-</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--DELETAR-->
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Localizar pelo Nome do Jogador</h4>
+                                        <p class="card-title-desc">
+                                            Use esta requisição para <b>Deletar</b> um cadastro no PokéFan, passando um número de <code>id</code>.
+                                        </p>
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tipo</th>
+                                                        <th>URL</th>
+                                                        <th>Body</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td scope="row"><code>DELETE</code></td>
+                                                        <td><code>http://localhost:62449/api/CadastroPokemonApi/Deletar/id</code></td>
+                                                        <td>-</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fim Página-->
+                    </div>
+            </div>
+            <!--Footer-->
+            <footer class="footer">
+                <div class="container-fluid navbar-fixed-bottom">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <b>Dados atualizados: </b> @DateTime.Now
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-right d-none d-sm-block">
+                                <a href="@Url.Action("About", "CadastroPokemon")">Documentação</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
 </html>

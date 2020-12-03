@@ -3,66 +3,131 @@
 @{
     ViewData["Title"] = "Cadastrar";
 }
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <title>PokéFan | Cadastro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>About</title>
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icones Css -->
+    <link href="/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="/css/app.css" rel="stylesheet" type="text/css" />
 </head>
-
-
-    <div class="nav">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="@Url.Action("Index", "CadastroPokemon")">Página inicial</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Cadastrar</a>
-            </li>
-        </ul>
-    </div>
-
-    <h1>Cadastrar</h1>
-
-    <form asp-action="Cadastrar" asp-controller="CadastroPokemon" method="post">
-        <fieldset>
-            <legend> Cadastro de Pokémon favorito </legend>
-            @*<div class="form-group">
-                    <label>Pesquisar Pokémon</label>
-                    <input class="form-group" type="text" id="pesquisaPokemon" />
-                </div>
-                <div class="form-group">
-                    <button type="button" class="btn btn-info" onclick="BuscarPokemon()"> Buscar </button>
-                </div>*@
-            <div>
-                <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
-                <div class="form-group">
-                    <label>Nome</label>
-                    <input class="form-group" type="text" id="nome" asp-for="Nome" />
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input class="form-group" type="text" id="email" asp-for="Email" />
-                </div>
-                <div>
-                    <label>Idade</label>
-                    <input class="form-group" type="text" id="idade" asp-for="Idade" />
-                </div>
-                <div>
-                    <label>nomePokemon</label>
-                    <input class="form-group" type="text" id="nomePokemonPreferido" asp-for="NomePokemonPreferido" readonly />
-                </div>
-                <div>
-                    <label>Numero na Pokedex</label>
-                    <input class="form-group" type="text" id="numeroPokemonPreferido" asp-for="NumeroPokemon" readonly />
-                </div>
-                <div>
-                    <label>Imagem </label>
-                    <input class="form-group" type="text" id="urlImgPokemonPreferido" asp-for="UrlFotoPokemon" readonly />
+<body data-layout="horizontal" data-topbar="dark" onload="pegaDadosFront()">
+    <div class="container-fluid">
+        <div id="layout-wrapper">
+            <!--cabeçalho-->
+            <header id="page-topbar">
+                <nav class="navbar navbar-expand-md navbar-fixed-top main-nav navbar-header">
+                    <div class="container">
+                        <div class="navbar-collapse collapse nav-content order-2"></div>
+                        <ul class="nav navbar-nav text-nowrap flex-row mx-md-auto order-1 order-md-2">
+                            <li class="nav-item"><a href="@Url.Action("Index", "CadastroPokemon")"><img src="/img/logo.png" alt="PokéFan" height="60"></a></li>
+                        </ul>
+                        <div class="ml-auto navbar-collapse collapse nav-content order-3 order-md-3"></div>
+                    </div>
+                </nav>
+            </header>
+            <!-- CONTEÚDO AQUI -->
+            <div class="main-content">
+                <div class="page-content">
+                    <br />
+                    <br />
+                    <!--INICIA ROW-->
+                    <form asp-action="Cadastrar" asp-controller="CadastroPokemon" method="post">
+                        <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+                        <div class="row">
+                            <!--Card Pokemon-->
+                            <div class="col-xl-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Dados do Pokémon</h4>
+                                        <div class="user-wid text-center py-4">
+                                            <div class="user-img">
+                                                <img src="/img/what.png" id="pokeImg" alt="Imagem do Pokémon" width=98 height=98>
+                                            </div>
+                                            <div class="mt-3">
+                                                <input type="text" id="nomePokemonPreferido" asp-for="NomePokemonPreferido" readonly hidden />
+                                                <p id="pokeNome" class="text-dark font-weight-medium font-size-16"></p>
+                                                <input type="text" id="numeroPokemonPreferido" asp-for="NumeroPokemon" readonly hidden />
+                                                <p id="pokeNum" class="text-body mt-1 mb-0 font-size-13"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Card Cadastro-->
+                            <div class="col-xl-9">
+                                <div class="card">
+                                    <div class="card-body" style="position: relative;">
+                                        <h4 class="card-title mb-4">Dados do Jogador</h4>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>Nome</label>
+                                                    <input type="text" class="form-control" id="nome" asp-for="Nome" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>E-mail</label>
+                                                    <input type="text" class="form-control" id="email" asp-for="Email" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label>Idade</label>
+                                                    <input type="number" class="form-control" id="idade" asp-for="Idade" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Imagem URL</label>
+                                                    <input class="form-control" type="text" id="urlImgPokemonPreferido" asp-for="UrlFotoPokemon" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-primary" type="submit">Cadastrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <input class="btn btn-success" type="submit" value="Cadastrar" />
-        </fieldset>
-    </form>
+        </div>
+        <!--Footer-->
+        <footer class="footer">
+            <div class="container-fluid navbar-fixed-bottom">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <b>Dados atualizados: </b> @DateTime.Now
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-right d-none d-sm-block">
+                            <a href="@Url.Action("About", "CadastroPokemon")">Documentação</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    //Script para Pegar dados para o front
+    function pegaDadosFront() {
+        var pokeNum = document.getElementById("numeroPokemonPreferido").value;
+        document.getElementById("pokeNum").innerHTML = "Número na Pokedex: " + pokeNum;
+
+        var pokeNome = document.getElementById("nomePokemonPreferido").value;
+        document.getElementById("pokeNome").innerHTML = pokeNome;
+
+        var pokeImg = document.getElementById("urlImgPokemonPreferido").value;
+        document.getElementById("pokeImg").src = pokeImg;
+    }
+</script>
