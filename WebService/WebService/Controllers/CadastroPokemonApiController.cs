@@ -62,7 +62,7 @@ namespace WebService.Controllers
            
         }
 
-        //GET: /api/CadastroPokemonApi/LocalizarPorNome/nome
+        //GET: /api/CadastroPokemonApi/Deletar/nome
         [HttpGet]
         [Route("Deletar/{id}")]
         public IActionResult Deletar(int id)
