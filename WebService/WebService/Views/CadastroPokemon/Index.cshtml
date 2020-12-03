@@ -14,6 +14,8 @@
     <link href="/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="/css/app.css" rel="stylesheet" type="text/css" />
+    <!--SweetAlert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body data-layout="horizontal" data-topbar="dark">
     <div class="container-fluid">
@@ -43,13 +45,13 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Procure um Pokémon</h4>
                                     <p class="card-title-desc">
-                                        Neste campo de busca insira o pokémon que deseja cadastrar em sua Base PokéFan.
+                                        Neste campo de busca insira o nome ou número na Pokédex do pokémon que deseja cadastrar em sua Base PokéFan.
                                     </p>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="validationCustom01">Nome Pokémon</label>
-                                                    <input class="form-control" type="text" id="buscarPokemon" placeholder="Exemplo: pikachu" required />
+                                                    <label for="validationCustom01">Nome Pokémon ou Número Pokédex</label>
+                                                    <input class="form-control" type="text" id="buscarPokemon" placeholder="Exemplo: pikachu ou 25" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <button id="validationCustom01" type="button" class="btn btn-primary" onclick="BuscarPokemon()">Buscar</button>
@@ -157,12 +159,25 @@
     var nomePokemon;
     var numeroPokemon;
     var urlImgPokemon;
-
     let txtPesquisaPokemon = document.getElementById("buscarPokemon");
-
     let txtNomePokemonPreferido = document.getElementById("nomePokemonPreferido");
     let txtNumeroPokemonPreferido = document.getElementById("numeroPokemonPreferido");
     let txtUrlImgPokemonPreferido = document.getElementById("urlImgPokemonPreferido");
+
+    function alerta(type, title, mensagem) {
+        Swal.fire({
+            title: 'Falha ao localizar Pokemon!',
+            text: 'Escolha outro pokemon ou digite o nome corretamente!',
+            imageUrl: './img/what.png',
+            imageWidth: 100,
+            imageHeight: 100,
+            imageAlt: 'Custom image',
+        })
+
+        document.getElementById("buscarPokemon").value = "";
+
+    }
+
 
     function BuscarPokemon() {
 
@@ -172,26 +187,54 @@
         fetch(url)
             .then(
                 function (response) {
-                    response.json()
-                        .then(function (data) {
-                            //console.log(data)
-                            //console.log(data.name)
-                            //console.log(data.id)
-                            //console.log(data.sprites.front_default)
-                            txtNomePokemonPreferido.value = data.name;
-                            txtNumeroPokemonPreferido.value = data.id;
-                            txtUrlImgPokemonPreferido.value = data.sprites.front_default;
-                            nomePokemon = data.name;
-                            numeroPokemon = data.id;
-                            urlImgPokemon = data.sprites.front_default;
-                            document.getElementById('qr_img').src = urlImgPokemon;
-                            console.log(nomePokemon)
-                            console.log(numeroPokemon)
-                            console.log(urlImgPokemon)
-                            console.log(txtNomePokemonPreferido.value)
+                    if (response.status === 404) {
+                        //alert("Escolha outro pokemon ou digite o nome corretamente!");
+                        alerta("Falha ao localizar Pokemon", "Escolha outro pokemon ou digite o nome corretamente!");
+                    }
+                    else
+                    {
+                        response.json()
+                            .then(function (data) {
+                            
+                                     //console.log(data)
+                                    //console.log(data.name)
+                                    //console.log(data.id)
+                                    //console.log(data.sprites.front_default)
+                                    txtNomePokemonPreferido.value = data.name;
+                                    txtNumeroPokemonPreferido.value = data.id;
+                                    txtUrlImgPokemonPreferido.value = data.sprites.front_default;
+                                    nomePokemon = data.name;
+                                    numeroPokemon = data.id;
+                                    urlImgPokemon = data.sprites.front_default;
+                                    document.getElementById('qr_img').src = urlImgPokemon;
+                                    console.log(nomePokemon)
+                                    console.log(numeroPokemon)
+                                    console.log(urlImgPokemon)
+                                    console.log(txtNomePokemonPreferido.value)
 
-                        })
-                })
-            .catch(error => console.log(error));
+                                
+                                ////console.log(data)
+                                ////console.log(data.name)
+                                ////console.log(data.id)
+                                ////console.log(data.sprites.front_default)
+                                //txtNomePokemonPreferido.value = data.name;
+                                //txtNumeroPokemonPreferido.value = data.id;
+                                //txtUrlImgPokemonPreferido.value = data.sprites.front_default;
+                                //nomePokemon = data.name;
+                                //numeroPokemon = data.id;
+                                //urlImgPokemon = data.sprites.front_default;
+                                //document.getElementById('qr_img').src = urlImgPokemon;
+                                //console.log(nomePokemon)
+                                //console.log(numeroPokemon)
+                                //console.log(urlImgPokemon)
+                                //console.log(txtNomePokemonPreferido.value)
+
+                            })
+                        }
+                    })
+                       
+                .catch(error => console.log(error));
     }
+
+
 </script>
